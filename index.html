@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<style>
+    body{
+        overflow: hidden;
+        background: #222;
+        color: #FFF;
+        font-family: sans-serif;
+    }
+    span{
+        position: absolute;
+        opacity: .4;
+        z-index: 1;
+    }    
+    .sample1{
+        border-radius: 100px;
+        border: solid #038C8C 100px;
+    }
+    .sample2{
+        border-radius: 100px;
+        border: solid #F2D129 100px;
+    }
+    .sample3{
+        border-radius: 300px;
+        border: solid #8C170D 300px;
+    }
+    .sample4{
+        border-radius: 100px;
+        border: solid #038C8C 100px;
+    }
+    .sample5{
+        border-radius: 100px;
+        border: solid #038C8C 100px;
+    }
+    .sample6{
+        border-radius: 100px;
+        border: solid #038C8C 100px;
+    }
+    .sample8{
+        border-radius: 800px;
+        border: solid #F28322 800px;
+    }
+    .sample7{
+        background: url('gucci1.png');
+        background-size: contain;
+        width: 500px;
+        height: 500px;
+        background-repeat: no-repeat;
+        opacity: 1;
+    }
+    .sample9{
+        border-radius: 800px;
+        border: solid #F28322 800px;
+    }
+    #mpc{
+        width: 800px;
+        height: 800px;
+        margin: 0 auto;
+        background: #111;
+        z-index: 99;
+        top: 100px;
+        position: relative;
+        border-radius: 20px;
+        padding: 10px;
+        -webkit-box-shadow: 10px 10px 63px 0px rgba(0,0,0,0.25);
+        -moz-box-shadow: 10px 10px 63px 0px rgba(0,0,0,0.25);
+        box-shadow: 10px 10px 63px 0px rgba(0,0,0,0.25);
+        display: none;
+    }
+    .pad{
+        float:left;
+        width: 31%;
+        height: 200px;
+        margin: 10px;
+        background: yellow;
+        opacity: .1;
+        -webkit-transition: opacity .3s; /* Safari */
+        transition: opacity .3s;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 100px;
+        font-weight: 600;
+        text-align: center;
+    }
+    .pad.active{
+        opacity: 1;
+    }
+</style>
+</head>
+<body>
+    <p>W E R S D F U I O</p>
+    <div id="mpc">
+        <div class="pad" id="pad1">W</div>
+        <div class="pad" id="pad2">E</div>
+        <div class="pad" id="pad3">R</div>
+        <div class="pad" id="pad4">S</div>
+        <div class="pad" id="pad5">D</div>
+        <div class="pad" id="pad6">F</div>
+        <div class="pad" id="pad7">U</div>
+        <div class="pad" id="pad8">I</div>
+        <div class="pad" id="pad9">O</div>
+    </div>
+
+<script>
+var sample = [];
+    
+function padHit(i){
+    rand1 = Math.floor(Math.random() * $height) + 1
+    rand2 = Math.floor(Math.random() * $width) + 1
+    console.log('Sample '+i);
+    sample['Audio'+ i].pause();
+    sample['Audio'+ i].currentTime = 0;
+    sample['Audio'+ i].play();
+    $('body').append($('<span></span>').attr('style', "top: "+(rand1-medium)+"px; left: "+(rand2-medium)+"px;" ).addClass('sample'+i));
+    $('#pad'+i).addClass('active').delay(100).queue(function(){ $(this).removeClass("active").dequeue();});
+    
+}
+    
+function init(){
+    $height = window.innerHeight - 200;
+    $('#mpc').css('height', $height);
+    $('#mpc').css('width', $height);
+    $('.pad').css('width', $height/3 - 20);
+    $('.pad').css('height', $height/3 - 20);
+}
+    
+
+
+$(document).ready(function() {
+    
+        init();
+    
+        small = 100;
+        medium = 300;
+        large = 800;
+    
+        $width = window.innerWidth;
+        $height = window.innerHeight;
+        var Audio1 = document.createElement('audio');
+        Audio1.setAttribute('src', 'aye.wav');
+        sample['Audio1'] = Audio1;
+    
+        var Audio2 = document.createElement('audio');
+        Audio2.setAttribute('src', 'clap.wav');
+        sample['Audio2'] = Audio2;
+    
+        var Audio3 = document.createElement('audio');
+        Audio3.setAttribute('src', 'trapsnare.mp3');
+        sample['Audio3'] = Audio3;
+    
+        var Audio4 = document.createElement('audio');
+        Audio4.setAttribute('src', 'up.wav');
+        sample['Audio4'] = Audio4;
+    
+        var Audio5 = document.createElement('audio');
+        Audio5.setAttribute('src', 'bass.wav');
+        sample['Audio5'] = Audio5;
+    
+        var Audio6 = document.createElement('audio');
+        Audio6.setAttribute('src', 'kick2.wav');
+        sample['Audio6'] = Audio6;
+    
+        var Audio7 = document.createElement('audio');
+        Audio7.setAttribute('src', 'gun.wav');
+        sample['Audio7'] = Audio7;
+    
+        var Audio8 = document.createElement('audio');
+        Audio8.setAttribute('src', 'synth.mp3');
+        sample['Audio8'] = Audio8;
+    
+        var Audio9 = document.createElement('audio');
+        Audio9.setAttribute('src', 'synth2.wav');
+        sample['Audio9'] = Audio9;
+    
+    
+        setInterval(function() {
+            $('span').each(function() {
+            if( $( this ).css('opacity') <= 0 ){ $( this ).remove(); };
+            $( this ).css('border-radius', '+=10px');
+            $( this ).css('border-width', '+=10px');
+            $( this ).css('opacity', '-=.01');
+            });
+        }, 16);
+    
+        $.get();
+
+    
+        $(window).keypress(function (e) {
+          if ( e.keyCode === 119 ) {
+                e.preventDefault();
+                padHit(1);
+          }else if( e.keyCode === 101 ) { // 
+                e.preventDefault();
+                padHit(2);
+          } else if( e.keyCode === 114 ) {
+                e.preventDefault();
+                padHit(3);
+          } else if( e.keyCode === 115 ) {
+                e.preventDefault();
+                padHit(4);
+          } else if( e.keyCode === 100 ) {
+                e.preventDefault();
+                padHit(5);
+          } else if( e.keyCode === 102 ) {
+                e.preventDefault();
+                padHit(6);
+          } else if( e.keyCode === 117 ) {
+                e.preventDefault();
+                padHit(7);
+          } else if( e.keyCode === 105 ) {
+                e.preventDefault();
+                padHit(8);
+          } else if( e.keyCode === 111 ) {
+                e.preventDefault();
+                padHit(9);
+          } else {
+              console.log('Other Key'+e.keyCode);
+          }
+        });
+    
+        
+    
+
+for (i = 1; i <= 9; i++) {
+
+    (function(j) {
+        $('#pad'+j).click(function(){
+           padHit(j) ;
+        });
+
+    })(i);
+}
+    
+    
+    });
+</script>
+</body>
+</html>
